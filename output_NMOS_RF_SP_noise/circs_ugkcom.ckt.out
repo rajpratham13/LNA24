@@ -1,0 +1,42 @@
+
+hpeesofsim (*) 650.shp Jul 29 2026, MINT version 5
+    (64-bit windows built: Wed Jul 29, 2026 11:10:28 +0000)
+
+***** Simulation started at Fri Sep 18 19:33:24 2026
+      Running on host: "roohslappiee"
+      In Directory: "C:\Users\rajpr\LNA_wrk\output_NMOS_RF_SP_noise"
+      Process ID: 18016
+
+Parsing the netlist ...
+Flattening the netlist ...
+
+SP SP1[1] <circs_ugkcom.ckt>   freq=(1 GHz->100 GHz)
+
+Warning detected by hpeesofsim during SP analysis `SP1'.
+    The global circuit temperature (25 C or 298.15 K) does not equal the
+    IEEE standard noise temperature (16.85 C or 290 K) in the noise
+    analysis `SP1'. As a result, the signal-to-noise ratio loss at the
+    the circuit temperature and the noise figure, defined and calculated
+    at the standard noise temperature, might not agree for a passive
+    circuit. To eliminate this possible discrepancy, set the Temp parameter
+    on the Options item to 16.85 C.
+
+
+Checking for unresolved variables ...
+Flushing data (please wait) ...
+     ... data flush done.
+
+Resource usage:
+    Total CPU time            =     0.75 seconds.
+    Simulation stopwatch time =     0.31 seconds.
+    Total stopwatch time      =     0.81 seconds.
+
+    Memory used:  120 MBytes
+
+    Max threads used:  11
+        (NOTE: max threads includes very-low-CPU-usage support threads,
+         as well as high-CPU-usage computational threads.)
+
+
+***** Simulation finished at Fri Sep 18 19:33:24 2026
+

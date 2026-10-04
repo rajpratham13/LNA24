@@ -1,0 +1,32 @@
+
+hpeesofsim (*) 650.shp Jul 29 2026, MINT version 5
+    (64-bit windows built: Wed Jul 29, 2026 11:10:28 +0000)
+
+***** Simulation started at Fri Sep 18 19:32:55 2026
+      Running on host: "roohslappiee"
+      In Directory: "C:\Users\rajpr\LNA_wrk\output_NMOS_RF_SP_study\w8_vg8_vd15"
+      Process ID: 29476
+
+Parsing the netlist ...
+Flattening the netlist ...
+
+SP SP1[1] <circr21mkqn5.ckt>   freq=(1 GHz->100 GHz)
+
+Checking for unresolved variables ...
+Flushing data (please wait) ...
+     ... data flush done.
+
+Resource usage:
+    Total CPU time            =     0.72 seconds.
+    Simulation stopwatch time =     0.32 seconds.
+    Total stopwatch time      =     0.81 seconds.
+
+    Memory used:  120 MBytes
+
+    Max threads used:  11
+        (NOTE: max threads includes very-low-CPU-usage support threads,
+         as well as high-CPU-usage computational threads.)
+
+
+***** Simulation finished at Fri Sep 18 19:32:55 2026
+
