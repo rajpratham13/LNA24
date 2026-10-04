@@ -1,0 +1,108 @@
+; Top Design: "LNA_lib:LNA24_PRELIM:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="LNA_lib:LNA24_PRELIM:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+; Library Name: ads_simulation
+; Cell Name: SP_Diff
+; View Name: schematic
+define SP_Diff ( N__0  N__3  N__7  N__5 ) 
+parameters  Start=100 MHz  Stop=2 GHz  NumPoints=20  Z1=50+0*j  Z2=50+0*j 
+S_Param:SP1 CalcS=yes GroupDelayAperture=1e-4 FreqConversion=no FreqConversionPort=1 StatusLevel=2 CalcNoise=no SortNoise=0 BandwidthForNoise=1.0 Hz DevOpPtLevel=0 SPSS_WSP=yes \
+SweepVar="freq" SweepPlan="SP1_stim" OutputPlan="SP1_Output" 
+
+SweepPlan: SP1_stim Start=Start Stop=Stop Lin=NumPoints 
+
+OutputPlan:SP1_Output \
+      Type="Output" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+#load "python","LinearCollapse"
+Component Module="LinearCollapse" Type="ModelExtractor" NetworkRepresentation=2
+C:Port1N_DCBlock  N__3 N__2 C=1.0 F 
+C:Port1P_DCBlock  N__0 N__4 C=1.0 F 
+C:Port2N_DCBlock  N__1 N__5 C=1.0 F 
+C:Port2P_DCBlock  N__6 N__7 C=1.0 F 
+#uselib "ckt" , "tf"
+tf:Port1Balun  N__4 N__10 N__2 0 T=1.00 
+#uselib "ckt" , "tf"
+tf:Port2Balun  N__9 N__6 0 N__1 T=1.00 
+R:R1  N__2 0 R=VeryLarge Noise=yes 
+R:R2  N__1 0 R=VeryLarge Noise=yes 
+R:R3  N__5 0 R=VeryLarge Noise=yes 
+R:R6  0 N__7 R=VeryLarge Noise=yes 
+R:R5  0 N__0 R=VeryLarge Noise=yes 
+
+VeryLarge=1e12
+Port:Term2  N__9 0 Num=2 Z=Z2 Noise=yes 
+Port:Term1  N__10 0 Num=1 Z=Z1 Noise=yes 
+
+Options:Options1 Tnom=25 TopologyCheck=no ForceS_Params=yes V_RelTol=1e-6 I_RelTol=1e-6  \
+GiveAllWarnings=yes MaxWarnings=10 ForceM_Params=yes DC_ReadInitialGuess=no DC_WriteFinalSolution=no  \
+TopologyCheckMessages=no GPU=no doDeltaAC=no ReduceSPort=no ReduceSPortRatio=0.5  \
+WarnSOA=yes MaxWarnSOA=5 Census=no MinNodalR=1e-2 Ohm LargeCapThreshold=1e-3 F  \
+EnableAssertChecks=no EnableSpareRemoval=yes 
+
+R:R4  N__3 0 R=VeryLarge Noise=yes 
+end SP_Diff
+
+; Library Name: tubspdk_lib
+; Cell Name: nmos
+; View Name: schematic
+define nmos ( b  d  g  s ) 
+parameters  W=1 um  L=0.12 um  Nf=1 
+"nmos_modelcard":MOSFET1  d N__4 s b Length=L Width=W Nf=Nf Sa=0.32 um Sb=0.32 um Sd=0.36 um Geomod=0 Rgeomod=1 Mode=1 Noise=yes 
+R:R1  g N__4 R=W/L*Rgate_sht/Nf/Nf/3 Noise=yes 
+
+Rgate_sht=10
+end nmos
+
+nmos:Q1  src_p vout_n vin_p_int src_p W=4 um L=0.12 um Nf=1 _M=1 
+nmos:Q2  src_n vout_p vin_n_int src_n W=4 um L=0.12 um Nf=1 _M=1 
+Termination:P_IN vin_p vin_n  Load=100 Ohm
+Termination:P_OUT vout_p vout_n  Load=100 Ohm
+V_Source:VDD  VDD 0 Type="V_DC" Vdc=1.5 V SaveCurrent=1 
+V_Source:VBIAS  VBIAS 0 Type="V_DC" Vdc=0.8 V SaveCurrent=1 
+R:RB1  VBIAS vin_p_int R=1 MOhm Noise=yes 
+R:RB2  VBIAS vin_n_int R=1 MOhm Noise=yes 
+L:TEMP_LG1  vin_p vin_p_int L=8.75 nH R=0 Noise=yes  
+L:TEMP_LG2  vin_n vin_n_int L=8.75 nH R=0 Noise=yes  
+L:TEMP_LS1  src_p 0 L=0.10 nH R=0 Noise=yes  
+L:TEMP_LS2  src_n 0 L=0.10 nH R=0 Noise=yes  
+L:TEMP_LD1  VDD vout_n L=3.06 nH R=0 Noise=yes  
+L:TEMP_LD2  VDD vout_p L=3.06 nH R=0 Noise=yes  
+C:COUT1  vout_n 0 C=14.3 fF 
+C:COUT2  vout_p 0 C=14.3 fF 
+#ifndef inc_LNA__lib_3aLNA24__PRELIM_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet
+#define inc_LNA__lib_3aLNA24__PRELIM_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet 1
+#include "C:\Users\rajpr\tubspdk_wrk\models\mos.net"
+#endif
+DC:DC1 StatusLevel=2 DevOpPtLevel=0 UseFiniteDiff=no PrintOpPoint=no Restart=1 \
+SweepVar="VBIAS_SWEEP" SweepPlan="DC1_stim" OutputPlan="DC1_Output" 
+
+SweepPlan: DC1_stim Start=0.8 V Stop=0.8 V Step=0.1 V 
+
+OutputPlan:DC1_Output \
+      Type="Output" \
+      UseNodeNestLevel=yes \
+      NodeNestLevel=2 \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2 \
+      UseDeviceCurrentNestLevel=no \
+      DeviceCurrentNestLevel=0 \
+      DeviceCurrentDeviceType="All" \
+      DeviceCurrentSymSyntax=yes \
+      UseCurrentNestLevel=yes \
+      CurrentNestLevel=999 \
+      UseDeviceVoltageNestLevel=no \
+      DeviceVoltageNestLevel=0 \
+      DeviceVoltageDeviceType="All"
+
+
+X=1.0
+VBIAS_SWEEP=0.8 V
+SP_Diff:SP_DIFF  N__32 N__33 N__35 N__34 Start=10 GHz Stop=40 GHz NumPoints=301 Z1=50 Ohm Z2=50 Ohm 
