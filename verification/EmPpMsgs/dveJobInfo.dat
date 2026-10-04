@@ -1,0 +1,5 @@
+jobName=EmPpMsgs
+jobType=emprep
+designName=LNA_lib:Lg_RectInd_D130p0_N2_W12p0_S2p0:layout
+ruleFilePath=
+addInfo="EM preprocessor messages displayed as DRC errors"

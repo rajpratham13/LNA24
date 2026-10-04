@@ -1,0 +1,19 @@
+<!DOCTYPE SaveWorkspaceState>
+<SaveWorkspaceState>
+    <Windows>
+        <Schematic cell="LNA24_PRELIM" geom="1,0,2,188,33,1692,986,1920,1080" height="991" lib="LNA_lib" view="schematic" width="1920" x1="0" y1="-9"/>
+        <Schematic cell="LNA24_PRELIM_NF_testbench" geom="1,0,2,227,33,1692,986,1920,1080" height="991" lib="LNA_lib" view="schematic" width="1920" x1="0" y1="-9"/>
+        <Schematic cell="LNA24_P1dB" geom="1,0,2,227,33,1692,986,1920,1080" height="991" lib="LNA_lib" view="schematic" width="1920" x1="0" y1="-9"/>
+        <Schematic cell="LNA24_IP3" geom="1,0,2,227,33,1692,986,1920,1080" height="991" lib="LNA_lib" view="schematic" width="1920" x1="0" y1="-9"/>
+        <Layout cell="Ls_RectInd_D70p0_N1_W10p0_S2p0" geom="1,0,2,383,203,1536,816,1920,1080" height="991" lib="LNA_lib" view="layout" width="1920" x1="0" y1="-9"/>
+        <Layout cell="Ld_RectInd_D120p0_N2_W12p0_S2p0" geom="1,0,2,383,203,1536,816,1920,1080" height="991" lib="LNA_lib" view="layout" width="1920" x1="0" y1="-9"/>
+        <Layout cell="Lg_RectInd_D130p0_N2_W12p0_S2p0" geom="1,0,2,383,203,1536,816,1920,1080" height="991" lib="LNA_lib" view="layout" width="1920" x1="0" y1="-9"/>
+        <DDS name="LNA24_PRELIM.dds"/>
+        <DDS name="LNA24_P1dB.dds"/>
+        <DDS name="LNA24_PRELIM_NF_testbench.dds"/>
+        <DDS name="Ls_RectInd_D70p0_N1_W10p0_S2p0.dds"/>
+        <DDS name="Lg_RectInd_D130p0_N2_W12p0_S2p0.dds"/>
+        <DDS name="Ld_RectInd_D120p0_N2_W12p0_S2p0.dds"/>
+    </Windows>
+    <MainWindowTab tab="1"/>
+</SaveWorkspaceState>

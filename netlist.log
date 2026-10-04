@@ -1,0 +1,86 @@
+; Top Design: "LNA_lib:LNA24_PRELIM_NF_testbench:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="LNA_lib:LNA24_PRELIM_NF_testbench:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=2
+; Library Name: tubspdk_lib
+; Cell Name: nmos
+; View Name: schematic
+define nmos ( b  d  g  s ) 
+parameters  W=1 um  L=0.12 um  Nf=1 
+"nmos_modelcard":MOSFET1  d N__4 s b Length=L Width=W Nf=Nf Sa=0.32 um Sb=0.32 um Sd=0.36 um Geomod=0 Rgeomod=1 Mode=1 Noise=yes 
+R:R1  g N__4 R=W/L*Rgate_sht/Nf/Nf/3 Noise=yes 
+
+Rgate_sht=10
+end nmos
+
+nmos:Q1  src_p node1 vin_p_int src_p W=Nfx*1u L=0.12 um Nf=Nfx _M=1 
+#ifndef inc_LNA__lib_3aLNA24__PRELIM__NF__testbench_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet
+#define inc_LNA__lib_3aLNA24__PRELIM__NF__testbench_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet 1
+#include "C:\Users\rajpr\tubspdk_wrk\models\mos.net"
+#endif
+V_Source:VBIAS  VBIAS 0 Type="V_DC" Vdc=Vg SaveCurrent=1 
+#uselib "ckt" , "SnP"
+SnP:SnP2  VDD vout_n NumPorts=2 File="C:\Users\rajpr\LNA_wrk\data\Ld_RectInd_D120p0_N2_W12p0_S2p0_MomRF.s2p" Type="touchstone" InterpMode="linear" InterpDom="" ExtrapMode="constant" Temp=27.0 CheckPassivity=0 
+C:COUT1  vout_n 0 C=6.5 fF 
+C:COUTN  vout_n vout_n_rf C=34 fF 
+Port:Term2  vout_n_rf 0 Num=2 Z=50 Ohm Noise=yes 
+C:CIN1  vin_p_rf vin_p_int C=Cin 
+Port:Term1  vin_p 0 Num=1 Z=50 Ohm Noise=yes 
+#uselib "ckt" , "SnP"
+SnP:SnP1  vin_p vin_p_rf NumPorts=2 File="C:\Users\rajpr\LNA_wrk\data\Lg_RectInd_D130p0_N2_W12p0_S2p0_MomRF.s2p" Type="touchstone" InterpMode="linear" InterpDom="" ExtrapMode="constant" Temp=27.0 CheckPassivity=0 
+ParamSweep:Sweep1 SimInstanceName[1]="SP1" StatusLevel=2 
+
+V_Source:VDD  VDD 0 Type="V_DC" Vdc=1.5 V SaveCurrent=1 
+S_Param:SP1 CalcS=yes CalcY=no CalcZ=no GroupDelayAperture=1e-4 FreqConversion=no FreqConversionPort=1 StatusLevel=2 CalcNoise=yes SortNoise=0 BandwidthForNoise=1.0 Hz DevOpPtLevel=0 NoiseInputPort=1 NoiseOutputPort=2 SPSS_WSP=yes \
+SweepVar="freq" SweepPlan="SP1_stim" OutputPlan="SP1_Output" 
+
+SweepPlan: SP1_stim Start=10 GHz Stop=40 GHz Step=0.1 GHz 
+
+OutputPlan:SP1_Output \
+      Type="Output" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+#load "python","LinearCollapse"
+Component Module="LinearCollapse" Type="ModelExtractor" NetworkRepresentation=2
+
+Cin=5p
+Nfx=32
+Vg=0.66
+w0=2*pi*24G
+Ls=0.2n
+Lg=1.14n*40/Nfx - Ls
+Ld=0.6n*40/Nfx
+DC:DC1 StatusLevel=2 DevOpPtLevel=4 UseFiniteDiff=no PrintOpPoint=no Restart=1 \
+SweepVar="VBIAS_SWEEP" SweepPlan="DC1_stim" OutputPlan="DC1_Output" 
+
+SweepPlan: DC1_stim Start=0.8 V Stop=0.8 V 
+
+OutputPlan:DC1_Output \
+      Type="Output" \
+      UseNodeNestLevel=yes \
+      NodeNestLevel=2 \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2 \
+      UseDeviceCurrentNestLevel=no \
+      DeviceCurrentNestLevel=0 \
+      DeviceCurrentDeviceType="All" \
+      DeviceCurrentSymSyntax=yes \
+      UseCurrentNestLevel=yes \
+      CurrentNestLevel=999 \
+      UseDeviceVoltageNestLevel=no \
+      DeviceVoltageNestLevel=0 \
+      DeviceVoltageDeviceType="All"
+
+
+X=1.0
+VBIAS_SWEEP=0.8 V
+#uselib "ckt" , "SnP"
+SnP:SnP3  src_p 0 NumPorts=2 File="C:\Users\rajpr\LNA_wrk\data\Ls_RectInd_D70p0_N1_W10p0_S2p0_MomRF.s2p" Type="touchstone" InterpMode="linear" InterpDom="" ExtrapMode="constant" Temp=27.0 CheckPassivity=0 
+nmos:Q3  src_p vout_n VCAS node1 W=Nfx*1u L=0.12 um Nf=Nfx _M=1 
+V_Source:VBIAS1  VCAS 0 Type="V_DC" Vdc=1.3 V SaveCurrent=1 
+R:RB4  VBIAS vin_p_int R=1 MOhm Noise=yes 

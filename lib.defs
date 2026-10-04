@@ -1,0 +1,4 @@
+INCLUDE $HPEESOF_DIR/oalibs/analog_rf.defs
+INCLUDE $HOME/tubspdk_wrk/lib.defs
+DEFINE LNA_lib LNA_lib
+ASSIGN LNA_lib libMode shared
