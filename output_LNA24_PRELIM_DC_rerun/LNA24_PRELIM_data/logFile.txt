@@ -1,0 +1,37 @@
+
+hpeesofsim (*) 650.shp Jul 29 2026, MINT version 5
+    (64-bit windows built: Wed Jul 29, 2026 11:10:28 +0000)
+
+***** Simulation started at Fri Sep 18 19:39:22 2026
+      Running on host: "roohslappiee"
+      In Directory: "C:\Users\rajpr\LNA_wrk\output_LNA24_PRELIM_DC_rerun"
+      Process ID: 11652
+
+Parsing the netlist ...
+Flattening the netlist ...
+
+Warning detected by hpeesofsim in LinearCollapse '_2_' during analysis.
+    LinearCollapse is disabled because there is 'DC' analysis present.
+
+
+Error detected by hpeesofsim during DC analysis `DC1'.
+    `VBIAS_SWEEP' does not exist.
+
+
+-------------------------------------------------------------------------------
+Simulation finished with errors.
+-------------------------------------------------------------------------------
+Flushing data (please wait) ...
+     ... data flush done.
+
+Resource usage:
+    Total CPU time            =     0.73 seconds.
+    Simulation stopwatch time =     0.32 seconds.
+    Total stopwatch time      =     0.83 seconds.
+
+    Memory used:  118 MBytes
+
+    Max threads used:  11
+        (NOTE: max threads includes very-low-CPU-usage support threads,
+         as well as high-CPU-usage computational threads.)
+

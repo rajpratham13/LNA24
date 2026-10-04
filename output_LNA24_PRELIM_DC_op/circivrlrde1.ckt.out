@@ -1,0 +1,51 @@
+
+hpeesofsim (*) 650.shp Jul 29 2026, MINT version 5
+    (64-bit windows built: Wed Jul 29, 2026 11:10:28 +0000)
+
+***** Simulation started at Fri Sep 18 19:41:23 2026
+      Running on host: "roohslappiee"
+      In Directory: "C:\Users\rajpr\LNA_wrk\output_LNA24_PRELIM_DC_op"
+      Process ID: 26008
+
+Parsing the netlist ...
+Flattening the netlist ...
+
+DC DC1[1] <circivrlrde1.ckt>   BIAS_SWEEP=800e-03
+.
+
+DC Operating Point:
+  V(s1) = 0 V
+  V(d1) = 1.5 V
+  V(g1) = 799.999 mV
+  V(Q1.N__4) = 799.999 mV
+  V(s2) = 0 V
+  V(d2) = 1.5 V
+  V(g2) = 799.999 mV
+  V(Q2.N__4) = 799.999 mV
+  V(VDD) = 1.5 V
+  V(VBIAS) = 800 mV
+  TEMP_LD2.i = 669.657 uA
+  TEMP_LD1.i = 669.657 uA
+  TEMP_LS2.i = 669.657 uA
+  TEMP_LS1.i = 669.657 uA
+  VBIAS.i = -1.65851 pA
+  VDD.i = -1.33931 mA
+
+Checking for unresolved variables ...
+Flushing data (please wait) ...
+     ... data flush done.
+
+Resource usage:
+    Total CPU time            =     0.59 seconds.
+    Simulation stopwatch time =     0.21 seconds.
+    Total stopwatch time      =     0.71 seconds.
+
+    Memory used:  105 MBytes
+
+    Max threads used:  8
+        (NOTE: max threads includes very-low-CPU-usage support threads,
+         as well as high-CPU-usage computational threads.)
+
+
+***** Simulation finished at Fri Sep 18 19:41:24 2026
+
