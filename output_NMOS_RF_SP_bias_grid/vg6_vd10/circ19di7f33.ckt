@@ -1,0 +1,36 @@
+; Top Design: "LNA_lib:NMOS_RF_SP:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="LNA_lib:NMOS_RF_SP:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+; Library Name: tubspdk_lib
+; Cell Name: nmos
+; View Name: schematic
+define nmos ( b  d  g  s ) 
+parameters  W=1 um  L=0.12 um  Nf=1 
+"nmos_modelcard":MOSFET1  d N__4 s b Length=L Width=W Nf=Nf Sa=0.32 um Sb=0.32 um Sd=0.36 um Geomod=0 Rgeomod=1 Mode=1 Noise=yes 
+R:R1  g N__4 R=W/L*Rgate_sht/Nf/Nf/3 Noise=yes 
+
+Rgate_sht=10
+end nmos
+
+nmos:Q1  0 d g 0 W=1 um L=0.12 um Nf=1 _M=1 
+Port:PORT_G  g 0 Num=1 Z=50 Ohm Noise=yes Vdc=0.6 V 
+Port:PORT_D  d 0 Num=2 Z=50 Ohm Noise=yes Vdc=1.0 V 
+#ifndef inc_LNA__lib_3aNMOS__RF__SP_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet
+#define inc_LNA__lib_3aNMOS__RF__SP_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet 1
+#include "C:\Users\rajpr\tubspdk_wrk\models\mos.net"
+#endif
+S_Param:SP1 CalcS=yes CalcY=yes CalcZ=yes GroupDelayAperture=1e-4 FreqConversion=no FreqConversionPort=1 StatusLevel=2 CalcNoise=no SortNoise=0 BandwidthForNoise=1.0 Hz DevOpPtLevel=0 SPSS_WSP=yes \
+SweepVar="freq" SweepPlan="SP1_stim" OutputPlan="SP1_Output" 
+
+SweepPlan: SP1_stim Start=1 GHz Stop=100 GHz Step=0.5 GHz 
+
+OutputPlan:SP1_Output \
+      Type="Output" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+#load "python","LinearCollapse"
+Component Module="LinearCollapse" Type="ModelExtractor" NetworkRepresentation=2

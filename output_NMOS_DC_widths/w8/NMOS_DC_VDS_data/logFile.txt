@@ -1,0 +1,29 @@
+
+hpeesofsim (*) 650.shp Jul 29 2026, MINT version 5
+    (64-bit windows built: Wed Jul 29, 2026 11:10:28 +0000)
+
+***** Simulation started at Fri Sep 18 19:33:37 2026
+      Running on host: "roohslappiee"
+      In Directory: "C:\Users\rajpr\LNA_wrk\output_NMOS_DC_widths\w8"
+      Process ID: 27536
+
+Parsing the netlist ...
+Flattening the netlist ...
+
+DC DC_VDS[1] <circ_qmykg4n.ckt>   VDS=(0->1.5)
+.......................................................................................................................................................
+Checking for unresolved variables ...
+Flushing data (please wait) ...
+     ... data flush done.
+
+Resource usage:
+    Total CPU time            =     0.66 seconds.
+    Simulation stopwatch time =     0.18 seconds.
+    Total stopwatch time      =     0.69 seconds.
+
+    Memory used:  104 MBytes
+
+    Max threads used:  8
+        (NOTE: max threads includes very-low-CPU-usage support threads,
+         as well as high-CPU-usage computational threads.)
+

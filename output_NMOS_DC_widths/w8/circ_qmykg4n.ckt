@@ -1,0 +1,48 @@
+; Top Design: "LNA_lib:NMOS_DC_VDS:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="LNA_lib:NMOS_DC_VDS:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+; Library Name: tubspdk_lib
+; Cell Name: nmos
+; View Name: schematic
+define nmos ( b  d  g  s ) 
+parameters  W=1 um  L=0.12 um  Nf=1 
+"nmos_modelcard":MOSFET1  d N__4 s b Length=L Width=W Nf=Nf Sa=0.32 um Sb=0.32 um Sd=0.36 um Geomod=0 Rgeomod=1 Mode=1 Noise=yes 
+R:R1  g N__4 R=W/L*Rgate_sht/Nf/Nf/3 Noise=yes 
+
+Rgate_sht=10
+end nmos
+
+nmos:Q1  0 vd vg 0 W=8 um L=0.12 um Nf=1 _M=1 
+V_Source:VDS1  vd 0 Type="V_DC" Vdc=VDS SaveCurrent=1 
+V_Source:VGS1  0 vg Type="V_DC" Vdc=-0.8 V SaveCurrent=1 
+#ifndef inc_LNA__lib_3aNMOS__DC__VDS_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet
+#define inc_LNA__lib_3aNMOS__DC__VDS_3aschematic__C_3a_5cUsers_5crajpr_5ctubspdk__wrk_5cmodels_2fmos_2enet 1
+#include "C:\Users\rajpr\tubspdk_wrk\models\mos.net"
+#endif
+DC:DC_VDS StatusLevel=2 DevOpPtLevel=0 UseFiniteDiff=no PrintOpPoint=no Restart=1 \
+SweepVar="VDS" SweepPlan="DC_VDS_stim" OutputPlan="DC_VDS_Output" 
+
+SweepPlan: DC_VDS_stim Start=0 V Stop=1.5 V Step=10 mV 
+
+OutputPlan:DC_VDS_Output \
+      Type="Output" \
+      UseNodeNestLevel=yes \
+      NodeNestLevel=2 \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2 \
+      UseDeviceCurrentNestLevel=no \
+      DeviceCurrentNestLevel=0 \
+      DeviceCurrentDeviceType="All" \
+      DeviceCurrentSymSyntax=yes \
+      UseCurrentNestLevel=yes \
+      CurrentNestLevel=999 \
+      UseDeviceVoltageNestLevel=no \
+      DeviceVoltageNestLevel=0 \
+      DeviceVoltageDeviceType="All"
+
+
+X=1.0
+VDS=0 V
