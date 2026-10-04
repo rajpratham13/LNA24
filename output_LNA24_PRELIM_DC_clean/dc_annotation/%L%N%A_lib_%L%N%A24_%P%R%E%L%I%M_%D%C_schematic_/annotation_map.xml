@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotation_files Simulator="hpeesofsim" Time="Fri Sep 18 19:41:12 2026" Version="1.0">
+ <File name="annotation_1.xml">
+  <Controller name="DC1">
+   <P>BIAS_SWEEP: 8.0000000000000004e-01</P>
+  </Controller>
+ </File>
+</annotation_files>

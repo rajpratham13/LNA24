@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      rajpr
+HostName                       roohslappiee
+ProcessIdentifier              20284
+ProcessCreationTime_UTC        1791101682
+ProcessCreationTime_Readable   Sun Oct  4 13:44:42 2026 India Standard Time
+AppIdentifier                  OA File System Design Manager
+OSType                         win32
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         C:\Users\rajpr\LNA_wrk\LNA_lib\%Lg_%Rect%Ind_%D130p0_%N2_%W12p0_%S2p0\layout\layout.oa.cdslck
+TimeEditLocked                 Sun Oct  4 14:06:39 2026 India Standard Time
